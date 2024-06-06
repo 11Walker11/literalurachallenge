@@ -35,14 +35,26 @@ public class Autor {
 
     @Override
     public String toString() {
+        StringBuilder librosStr = new StringBuilder();
+        if (libros != null && !libros.isEmpty()) {
+            librosStr.append("Libros:\n");
+            for (Libro libro : libros) {
+                librosStr.append("    - ").append(libro.getTitulo()).append("\n");
+            }
+        } else {
+            librosStr.append("Libros: No hay libros registrados\n");
+        }
+
         return "-----------------------------\n" +
                 "         Ficha del Autor\n" +
                 "-----------------------------\n" +
                 "Nombre                : " + nombre + "\n" +
                 "Fecha de Nacimiento   : " + (fechaDeNacimiento != null ? fechaDeNacimiento : "N/A") + "\n" +
                 "Fecha de Fallecimiento: " + (fechaDeFallecimiento != null ? fechaDeFallecimiento : "N/A") + "\n" +
+                librosStr.toString() +
                 "-----------------------------";
     }
+
 
 
     public List<Libro> getLibros() {

@@ -34,7 +34,11 @@ public class LibroService {
     }
 
     public List<Libro> buscarLibrosPorIdioma(String idioma) {
-        return libroRepository.findByIdioma(idioma);
+        return libroRepository.findByIdiomasContaining(idioma);
+    }
+
+    public long contarLibrosPorIdioma(String idioma) {
+        return libroRepository.countByIdiomasContaining(idioma);
     }
 
     public Libro guardarLibro(Libro libro) {
@@ -47,5 +51,13 @@ public class LibroService {
 
     public List<Autor> buscarAutoresVivosEnAno(String year) {
         return autorRepository.findAutoresVivosEnAno(year);
+    }
+
+    public List<Libro> listarTop10LibrosMasDescargados() {
+        return libroRepository.findTop10ByOrderByNumeroDeDescargasDesc();
+    }
+
+    public List<Autor> buscarAutorPorNombre(String nombre) {
+        return autorRepository.findByNombreContainingIgnoreCase(nombre);
     }
 }

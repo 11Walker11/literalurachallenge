@@ -13,4 +13,6 @@ public interface AutoresRepository extends JpaRepository<Autor,Long> {
 
     @Query("SELECT a FROM Autor a WHERE a.fechaDeNacimiento <= :year AND (a.fechaDeFallecimiento IS NULL OR a.fechaDeFallecimiento > :year)")
     List<Autor> findAutoresVivosEnAno(String year);
+
+    List<Autor> findByNombreContainingIgnoreCase(String nombre);
 }

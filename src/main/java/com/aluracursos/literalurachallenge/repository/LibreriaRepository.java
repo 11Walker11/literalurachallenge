@@ -12,6 +12,11 @@ public interface LibreriaRepository extends JpaRepository<Libro, Long> {
     List<Libro> findAll();
 
     @Query("SELECT l FROM Libro l WHERE l.idiomas LIKE %:idioma%")
-    List<Libro> findByIdioma(String idioma);
+    List<Libro> findByIdiomasContaining(String idioma);
+
+    long countByIdiomasContaining(String idioma);
+
+    @Query("SELECT l FROM Libro l ORDER BY l.numeroDeDescargas DESC")
+    List<Libro> findTop10ByOrderByNumeroDeDescargasDesc();
 
 }
